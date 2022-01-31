@@ -39,7 +39,7 @@ router.route("/updateinvoice/:id").put(async (req, res) => {
     .db("bookkeeping")
     .collection("invoices")
     .findOne({ _id: ObjectId(id) });
-  console.log(invoices);
+  // console.log(invoices);
   res.send(invoices);
 });
 

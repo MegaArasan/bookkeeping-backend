@@ -43,16 +43,16 @@ router.route("/customerlist").get(async (req, res) => {
 
 router.route("/:id").delete(async (req, res) => {
   const { id } = req.params;
-  console.log(id);
+  // console.log(id);
   const customer = await Deletecustomer(id);
   res.send({ customer, msg: "customer deleted successfully" });
 });
 
 router.route("/:id").get(async (req, res) => {
   const { id } = req.params;
-  console.log(id);
+  // console.log(id);
   const customer = await getCustomer(id);
-  console.log(customer);
+  // console.log(customer);
   res.send(customer);
 });
 

@@ -63,7 +63,7 @@ router.route("/forgotpassword").post(async (req, res) => {
   const { email } = req.body;
 
   const userfromDB = await Getuser({ email: email });
-  console.log(userfromDB);
+  // console.log(userfromDB);
   if (!userfromDB) {
     // console.error("Mail not registered");
     res.status(403).send({ Msg: "Mail is not registered" });
