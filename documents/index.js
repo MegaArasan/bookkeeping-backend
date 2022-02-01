@@ -1,7 +1,8 @@
+import moment from "moment";
 export default function ({
-  customerName,
+  name,
   address,
-  phoneno,
+  phone,
   email,
   dueDate,
   date,
@@ -96,9 +97,7 @@ export default function ({
     <div class="invoice-container">
     <section  class="header">
             <div>
-              ${
-                company.logo ? `<img src=${company?.logo} /><h6>___</h6>` : ""
-              }
+              ${company.logo ? `<img src=${company?.logo} /><h6>___</h6>` : ""}
             </div>
             <div class="receipt-id" style="margin-top: -120px 0 40px 0">
                 
@@ -111,18 +110,16 @@ export default function ({
                 company.businessName ? company.businessName : company.name
               }</h4>
               <p style="font-size: 9px; line-height: 5px">${company.email}</p>
-              <p style="font-size: 9px; line-height: 5px">${
-                company.phoneNumber
-              }</p>
+              <p style="font-size: 9px; line-height: 5px">${company.phoneno}</p>
               <p style="font-size: 9px; line-height: 5px">${
                 company.contactAddress
               }</p>
           </div>
           <div style="margin-bottom: 100px; margin-top: 20px">
           <p class="title">Bill to:</p>
-            <h4 style="font-size: 9px; line-height: 5px">${customerName}</h4>
+            <h4 style="font-size: 9px; line-height: 5px">${name}</h4>
             <p style="font-size: 9px; line-height: 5px">${email}</p>
-            <p style="font-size: 9px; line-height: 5px">${phoneno}</p>
+            <p style="font-size: 9px; line-height: 5px">${phone}</p>
             <p style="font-size: 9px; line-height: 5px">${address}</p>
           </div>
         <div class="status" style="margin-top: -280px">

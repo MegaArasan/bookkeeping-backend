@@ -49,6 +49,7 @@ router.route("/updateinvoice/:id").put(async (req, res) => {
 router.route("/getall").get(async (req, res) => {
   const token = req.header("x-auth-token");
   const user = await Getuser({ token: token });
+  // console.log(user);
   const { Username } = user;
   const invoices = await client
     .db("bookkeeping")
@@ -68,11 +69,12 @@ router.route("/delete/:id").delete(async (req, res) => {
 });
 
 router.route("/createanddownloadpdf").post((req, res) => {
-  pdf.create(pdfTemplate(req.data), {}).toFile("Invoice.pdf", (err) => {
+  console.log(req.body);
+  pdf.create(pdfTemplate(req.body), {}).toFile("Invoice.pdf", (err) => {
     if (err) {
-      return promise.reject();
+      res.send(Promise.reject());
     }
-    return promise.resolve();
+    res.send(Promise.resolve());
   });
 });
 router.route("/fetch-pdf").get((req, res) => {
