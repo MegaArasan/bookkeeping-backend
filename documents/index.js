@@ -97,7 +97,7 @@ export default function ({
     <section  class="header">
             <div>
               ${
-                company.logo ? `<img src=${company?.logo} />``<h6>___</h6>` : ""
+                company.logo ? `<img src=${company?.logo} /><h6>___</h6>` : ""
               }
             </div>
             <div class="receipt-id" style="margin-top: -120px 0 40px 0">

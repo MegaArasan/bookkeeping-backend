@@ -4,6 +4,7 @@ import { client } from "../index.js";
 import { ObjectId } from "mongodb";
 import pdf from "html-pdf";
 import pdfTemplate from "../documents/index.js";
+import { Getuser } from "../helperfunction.js";
 
 router.route("/createinvoice").post(async (req, res) => {
   const data = req.body;
@@ -46,10 +47,13 @@ router.route("/updateinvoice/:id").put(async (req, res) => {
 });
 
 router.route("/getall").get(async (req, res) => {
+  const token = req.header("x-auth-token");
+  const user = await Getuser({ token: token });
+  const { Username } = user;
   const invoices = await client
     .db("bookkeeping")
     .collection("invoices")
-    .find()
+    .find({ creator: Username })
     .toArray();
   res.send(invoices);
 });
