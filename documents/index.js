@@ -87,7 +87,7 @@ export default function ({
         margin-left: 50%;
         margin-bottom: 15px;
     }
-    img {
+    .companylogo {
         width: 100px;
        
     }
@@ -97,7 +97,7 @@ export default function ({
     <div class="invoice-container">
     <section  class="header">
             <div>
-              ${company.logo ? `<img src=${company?.logo} /><h6>___</h6>` : ""}
+              ${company.logo ? `<img src=${company?.logo} alt={logo} class="companylogo" /><h6>___</h6>` : ""}
             </div>
             <div class="receipt-id" style="margin-top: -120px 0 40px 0">
                 

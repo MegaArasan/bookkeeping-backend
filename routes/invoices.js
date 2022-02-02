@@ -5,6 +5,9 @@ import { ObjectId } from "mongodb";
 import pdf from "html-pdf";
 import pdfTemplate from "../documents/index.js";
 import { Getuser } from "../helperfunction.js";
+import nodemailer from "nodemailer";
+import path from "path";
+const __dirname = path.resolve();
 
 router.route("/createinvoice").post(async (req, res) => {
   const data = req.body;
@@ -69,7 +72,7 @@ router.route("/delete/:id").delete(async (req, res) => {
 });
 
 router.route("/createanddownloadpdf").post((req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   pdf.create(pdfTemplate(req.body), {}).toFile("Invoice.pdf", (err) => {
     if (err) {
       res.send(Promise.reject());
@@ -78,6 +81,7 @@ router.route("/createanddownloadpdf").post((req, res) => {
   });
 });
 router.route("/fetch-pdf").get((req, res) => {
+  // console.log(__dirname);
   res.sendFile(`${__dirname}/Invoice.pdf`);
 });
 
@@ -94,19 +98,19 @@ router.route("/send-pdf").post((req, res) => {
   const mailoptions = {
     from: data.company.businessName,
     to: data.email,
-    subject: "Receipt of bill paym,ent",
+    subject: "Receipt of bill payment",
     html: `
-  <header><img src=${data.company.logo} alt="logo" style={{width:"100px"}} /></header>
+    <header style={{backgroundColor:"gray"}}><img src=${data.company.logo} width="100" /><h6>${data.company.businessName}</h6></header>
   <h1>Hello ${data.name}</h1>
     <p>This mail for just remember you for the payment of bill.</p> 
-    <p>your due amount is ${data.balanceDue}</p>
+    <p>your due amount is <b>${data.balanceDue}</b></p>
     <p>please pay the bill before or on deu date.</p>
-    <p>Your due date is ${data.dueDate}</p>
+    <p>Your due date is <b>${data.dueDate}</b></p>
   `,
     attachments: [
       {
         filename: "Invoice.pdf",
-        path: __dirname + "Invoice.pdf",
+        path: __dirname / "Invoice.pdf",
         contentType: "application/pdf",
       },
     ],
