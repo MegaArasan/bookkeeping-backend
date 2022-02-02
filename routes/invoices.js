@@ -94,6 +94,8 @@ router.route("/send-pdf").post((req, res) => {
       pass: `${process.env.my_pass}`,
     },
   });
+  const lastdate = data.dueDate.toISOString();
+  console.log(lastdate);
 
   const mailoptions = {
     from: data.company.businessName,
@@ -104,8 +106,8 @@ router.route("/send-pdf").post((req, res) => {
   <h1>Hello ${data.name}</h1>
     <p>This mail for just remember you for the payment of bill.</p> 
     <p>your due amount is <b>${data.balanceDue}</b></p>
-    <p>please pay the bill before or on deu date.</p>
-    <p>Your due date is <b>${data.dueDate}</b></p>
+    <p>please pay the bill before or on due date.</p>
+    <p>Your due date is <b>${lastdate}</b></p>
   `,
     attachments: [
       {
