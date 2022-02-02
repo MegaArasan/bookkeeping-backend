@@ -100,7 +100,7 @@ router.route("/send-pdf").post((req, res) => {
     to: data.email,
     subject: "Receipt of bill payment",
     html: `
-    <header style={{backgroundColor:"gray"}}><img src=${data.company.logo} width="100" /><h6>${data.company.businessName}</h6></header>
+    <header style={{backgroundColor:"gray"}}><img src=${data.company.logo} width="100" /><h4>${data.company.businessName}</h4></header>
   <h1>Hello ${data.name}</h1>
     <p>This mail for just remember you for the payment of bill.</p> 
     <p>your due amount is <b>${data.balanceDue}</b></p>
